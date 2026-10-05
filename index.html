@@ -7,7 +7,7 @@
     <meta name="description" content="Eklin Yaovi KHAUNBIOW-HANCK. Commercial Director, Growth Strategist. 10+ years selling RegTech & Core Banking to central banks and regulated institutions.">
     
     <!-- Tailwind CSS (compilé) -->
-    <link rel="stylesheet" href="tailwind.css?v=20261005">
+    <link rel="stylesheet" href="tailwind.css?v=20261006">
     
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -406,7 +406,8 @@
                 <div class="bg-slate-50 p-8 rounded-xl border border-slate-200">
                     <h3 class="text-xl font-bold text-slate-900 mb-6" data-lang="en">Send a Message</h3>
                     <h3 class="text-xl font-bold text-slate-900 mb-6" data-lang="fr">Envoyez un Message</h3>
-                    <form action="https://formspree.io/f/mvkgnvwa" method="POST" class="space-y-5">
+                    <form id="contact-form" action="https://formspree.io/f/mvkgnvwa" method="POST" class="space-y-5">
+                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2" data-lang="en">Name</label>
                             <label class="block text-sm font-semibold text-slate-700 mb-2" data-lang="fr">Nom</label>
@@ -422,13 +423,27 @@
                             <label class="block text-sm font-semibold text-slate-700 mb-2" data-lang="fr">Message</label>
                             <textarea name="message" rows="5" required class="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition resize-none"></textarea>
                         </div>
-                        <button type="submit" class="w-full py-3 bg-brand-primary text-white font-bold rounded-lg hover:bg-blue-700 transition shadow-lg shadow-blue-500/30" data-lang="en">
+                        <div id="form-error" role="alert" class="hidden bg-red-50 text-red-800 border-l-4 border-red-600 rounded p-3 text-sm">
+                            <span data-lang="en">Sending failed. Please try again in a moment.</span>
+                            <span data-lang="fr">L'envoi a échoué. Réessayez dans un instant.</span>
+                        </div>
+                        <button type="submit" class="w-full py-3 bg-brand-primary text-white font-bold rounded-lg hover:bg-blue-700 transition shadow-lg shadow-blue-500/30 disabled:opacity-70 disabled:cursor-wait" data-lang="en">
                             Send Message
                         </button>
-                        <button type="submit" class="w-full py-3 bg-brand-primary text-white font-bold rounded-lg hover:bg-blue-700 transition shadow-lg shadow-blue-500/30" data-lang="fr">
+                        <button type="submit" class="w-full py-3 bg-brand-primary text-white font-bold rounded-lg hover:bg-blue-700 transition shadow-lg shadow-blue-500/30 disabled:opacity-70 disabled:cursor-wait" data-lang="fr">
                             Envoyer le Message
                         </button>
                     </form>
+                    <div id="form-success" class="hidden text-center py-6" role="status" tabindex="-1">
+                        <div data-lang="en">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Thank you!</h3>
+                            <p class="text-slate-600">Your message has been sent. I will get back to you shortly.</p>
+                        </div>
+                        <div data-lang="fr">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Merci !</h3>
+                            <p class="text-slate-600">Votre message a bien été envoyé. Je vous répondrai rapidement.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -523,6 +538,42 @@
         document.querySelectorAll('.fade-in-up').forEach(el => {
             observer.observe(el);
         });
+    </script>
+
+    <script>
+        // Formulaire de contact : envoi sans quitter la page
+        (function () {
+            const form = document.getElementById('contact-form');
+            if (!form) return;
+            const errorBox = document.getElementById('form-error');
+            const success = document.getElementById('form-success');
+            const buttons = form.querySelectorAll('button[type="submit"]');
+            const labels = [...buttons].map(b => b.textContent);
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                errorBox.classList.add('hidden');
+                buttons.forEach(b => {
+                    b.disabled = true;
+                    b.textContent = b.dataset.lang === 'fr' ? 'Envoi en cours...' : 'Sending...';
+                });
+                try {
+                    const res = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { Accept: 'application/json' }
+                    });
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    form.classList.add('hidden');
+                    success.classList.remove('hidden');
+                    success.focus();
+                    form.reset();
+                } catch (err) {
+                    errorBox.classList.remove('hidden');
+                    buttons.forEach((b, i) => { b.disabled = false; b.textContent = labels[i]; });
+                }
+            });
+        })();
     </script>
 </body>
 </html>
