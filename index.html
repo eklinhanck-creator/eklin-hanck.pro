@@ -107,8 +107,7 @@
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                         </span>
-                        <span class="text-sm font-medium text-green-100" data-lang="en">Based in Luxembourg — Work authorized</span>
-                        <span class="text-sm font-medium text-green-100" data-lang="fr">Basé au Luxembourg — Autorisé à travailler</span>
+                        <span class="text-sm font-medium text-green-100">EUROPE (BENELUX) &amp; AFRICA</span>
                     </div>
 
                     <!-- Hero Title EN -->
@@ -161,11 +160,11 @@
                             <i class="fas fa-envelope mr-2"></i> Me Contacter
                         </a>
                         
-                        <a href="https://drive.google.com/uc?export=download&id=1gMff3y7qiC8MyMmKmqT8pM0qVcK3hAE3" target="_blank" class="px-8 py-3.5 rounded-lg bg-white/10 border border-white/20 text-white font-medium hover:bg-white/20 transition backdrop-blur-sm text-center" data-lang="en">
-                            <i class="fas fa-download mr-2"></i> Download CV
+                        <a href="#contact" data-cv-request class="px-8 py-3.5 rounded-lg bg-white/10 border border-white/20 text-white font-medium hover:bg-white/20 transition backdrop-blur-sm text-center" data-lang="en">
+                            <i class="fas fa-file-lines mr-2"></i> Request my CV
                         </a>
-                        <a href="https://drive.google.com/uc?export=download&id=1gMff3y7qiC8MyMmKmqT8pM0qVcK3hAE3" target="_blank" class="px-8 py-3.5 rounded-lg bg-white/10 border border-white/20 text-white font-medium hover:bg-white/20 transition backdrop-blur-sm text-center" data-lang="fr">
-                            <i class="fas fa-download mr-2"></i> Télécharger CV
+                        <a href="#contact" data-cv-request class="px-8 py-3.5 rounded-lg bg-white/10 border border-white/20 text-white font-medium hover:bg-white/20 transition backdrop-blur-sm text-center" data-lang="fr">
+                            <i class="fas fa-file-lines mr-2"></i> Demander mon CV
                         </a>
                     </div>
                 </div>
@@ -448,6 +447,11 @@
                         </div>
                     </div>
                 </div>
+                <p class="text-center text-slate-600 text-sm p-8">
+                    <a href="https://linktr.ee/eklin_hanck" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-brand-primary transition font-medium">
+                        <i class="fas fa-link mr-2"></i><span data-lang="en">All my links on Linktree</span><span data-lang="fr">Tous mes liens sur Linktree</span>
+                    </a>
+                </p>
             </div>
         </div>
     </section>
@@ -470,6 +474,7 @@
                         <li><a href="#parcours" class="hover:text-white transition" data-lang="en">Journey</a></li>
                         <li><a href="#parcours" class="hover:text-white transition" data-lang="fr">Parcours</a></li>
                         <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="https://linktr.ee/eklin_hanck" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">Linktree</a></li>
                     </ul>
                 </div>
                 <div>
@@ -540,6 +545,19 @@
 
         document.querySelectorAll('.fade-in-up').forEach(el => {
             observer.observe(el);
+        });
+    </script>
+
+    <script>
+        // Demande de CV : pré-remplit le message du formulaire de contact
+        document.querySelectorAll('[data-cv-request]').forEach(link => {
+            link.addEventListener('click', () => {
+                const msg = document.querySelector('#contact-form textarea[name="message"]');
+                if (!msg || msg.value.trim() !== '') return;
+                msg.value = document.documentElement.lang === 'fr'
+                    ? "Bonjour, je souhaiterais recevoir votre CV."
+                    : "Hello, I would like to request your CV.";
+            });
         });
     </script>
 
