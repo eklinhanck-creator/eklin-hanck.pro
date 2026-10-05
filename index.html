@@ -57,6 +57,32 @@
             background: #cbd5e1;
             border-radius: 3px;
         }
+        .lt-wrap { display: inline-block; }
+        .lt-btn {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 0.55rem 1rem; border-radius: 9999px; cursor: pointer;
+            color: #fff; font: inherit; font-size: 0.875rem; font-weight: 500;
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25);
+            transition: background 0.2s;
+        }
+        .lt-btn:hover { background: rgba(255,255,255,0.18); }
+        .lt-btn:focus-visible, .lt-menu a:focus-visible { outline: 2px solid #f59e0b; outline-offset: 2px; }
+        .lt-logo { width: 1.25rem; height: 1.25rem; flex: none; }
+        .lt-chevron { font-size: 0.7rem; opacity: 0.8; transition: transform 0.2s; }
+        .lt-btn[aria-expanded="true"] .lt-chevron { transform: rotate(180deg); }
+        .lt-menu {
+            margin-top: 0.5rem; min-width: 14rem;
+            padding: 0.4rem; border-radius: 0.75rem;
+            background: #0f172a; border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        .lt-menu[hidden] { display: none; }
+        .lt-menu a {
+            display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.8rem;
+            border-radius: 0.5rem; color: #fff; font-size: 0.875rem; text-decoration: none;
+        }
+        .lt-menu a:hover { background: rgba(255,255,255,0.1); }
+        @media (prefers-reduced-motion: reduce) { .lt-btn, .lt-chevron { transition: none; } }
         [data-lang="fr"] {
             display: none;
         }
@@ -184,9 +210,19 @@
                         </a>
                     </div>
                     <div class="pt-4">
-                        <a href="https://linktr.ee/eklin_hanck" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white transition text-sm font-medium">
-                            <i class="fas fa-link mr-2"></i><span data-lang="en">All my links on Linktree</span><span data-lang="fr">Tous mes liens sur Linktree</span>
-                        </a>
+                        <div class="lt-wrap" id="lt-wrap">
+                            <button type="button" id="lt-btn" class="lt-btn" aria-expanded="false" aria-controls="lt-menu" aria-haspopup="true">
+                                <svg class="lt-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 2h2v5.2l3.3-3.3 1.4 1.4-3.7 3.7H20v2h-6.1l4.3 4.3-1.4 1.4-2.9-2.9V22h-2v-6.2l-2.9 2.9-1.4-1.4 4.3-4.3H4v-2h6.9L7.2 5.3l1.4-1.4L11 7.2z" fill="#43e660"/></svg>
+                                <span data-lang="en">All my links</span><span data-lang="fr">Tous mes liens</span>
+                                <i class="fas fa-chevron-down lt-chevron" aria-hidden="true"></i>
+                            </button>
+                            <div class="lt-menu" id="lt-menu" role="menu" hidden>
+                                <a role="menuitem" href="https://linktr.ee/eklin_hanck" target="_blank" rel="noopener noreferrer">
+                                    <svg class="lt-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 2h2v5.2l3.3-3.3 1.4 1.4-3.7 3.7H20v2h-6.1l4.3 4.3-1.4 1.4-2.9-2.9V22h-2v-6.2l-2.9 2.9-1.4-1.4 4.3-4.3H4v-2h6.9L7.2 5.3l1.4-1.4L11 7.2z" fill="#43e660"/></svg>
+                                    <span data-lang="en">Open my Linktree</span><span data-lang="fr">Ouvrir mon Linktree</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -567,6 +603,25 @@
         document.querySelectorAll('.fade-in-up').forEach(el => {
             observer.observe(el);
         });
+    </script>
+
+    <script>
+        // Menu "All my links" (Linktree)
+        (function () {
+            const wrap = document.getElementById('lt-wrap');
+            const btn = document.getElementById('lt-btn');
+            const menu = document.getElementById('lt-menu');
+            if (!wrap || !btn || !menu) return;
+            const setOpen = (open) => {
+                menu.hidden = !open;
+                btn.setAttribute('aria-expanded', String(open));
+            };
+            btn.addEventListener('click', () => setOpen(menu.hidden));
+            document.addEventListener('click', (e) => { if (!wrap.contains(e.target)) setOpen(false); });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !menu.hidden) { setOpen(false); btn.focus(); }
+            });
+        })();
     </script>
 
     <script>
