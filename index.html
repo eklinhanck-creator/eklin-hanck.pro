@@ -57,6 +57,22 @@
         html[lang="fr"] .inl [data-lang="fr"] { display: inline; }
         .ico { width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em; flex: none; }
         .w-12 > .ico { font-size: 1.6rem; }
+        .gal { position: relative; max-width: 56rem; margin: 0 auto; }
+        .gal-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; gap: 0; border-radius: 0.75rem; scrollbar-width: none; }
+        .gal-track::-webkit-scrollbar { display: none; }
+        .gal-track:focus-visible, .gal-nav:focus-visible, .gal-dot:focus-visible { outline: 2px solid #f59e0b; outline-offset: 2px; }
+        .gal-slide { flex: 0 0 100%; scroll-snap-align: center; margin: 0; background: #fff; }
+        .gal-frame { background: #0f172a; height: min(70vh, 34rem); display: flex; align-items: center; justify-content: center; }
+        .gal-frame img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+        .gal-slide figcaption { padding: 1rem 1.25rem; color: #334155; font-size: 0.95rem; line-height: 1.5; text-align: center; background: #fff; }
+        .gal-nav { position: absolute; top: calc(min(70vh, 34rem) / 2 - 1.5rem); width: 3rem; height: 3rem; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.5); background: rgba(15,23,42,0.65); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.25rem; }
+        .gal-nav:hover { background: rgba(15,23,42,0.85); }
+        .gal-prev { left: 0.75rem; }
+        .gal-next { right: 0.75rem; }
+        .gal-dots { display: flex; justify-content: center; gap: 0.5rem; padding-top: 1rem; }
+        .gal-dot { width: 0.65rem; height: 0.65rem; border-radius: 9999px; border: 0; background: #cbd5e1; cursor: pointer; padding: 0; }
+        .gal-dot[aria-current="true"] { background: #1e40af; transform: scale(1.25); }
+        @media (prefers-reduced-motion: reduce) { .gal-track { scroll-behavior: auto; } }
         .about-col { max-width: 44rem; margin: 0 auto; }
         html[lang="fr"] .cta-c [data-lang="fr"] { display: inline-block; }
         .cta-c [data-lang="en"] { display: inline-block; }
@@ -551,6 +567,65 @@
         </div>
     </section>
 
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6" data-lang="en">In the Field</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6" data-lang="fr">Sur le terrain</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto" data-lang="en">
+                    Moments from events and exhibitions.
+                </p>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto" data-lang="fr">
+                    Instants d'événements et de salons.
+                </p>
+            </div>
+            <div class="gal" id="gal" role="region" aria-roledescription="carousel" aria-label="Photos">
+                <div class="gal-track" id="gal-track" tabindex="0">
+                    <figure class="gal-slide" role="group" aria-roledescription="slide" aria-label="1 / 8">
+                        <div class="gal-frame"><img src="images/gallery/photo-1.jpg" alt="Eklin seated among panelists at SIPEN-UEMOA, 4th edition, Ouagadougou 2026" width="1280" height="852" loading="lazy" decoding="async"></div>
+                        <figcaption><span data-lang="en">SIPEN-UEMOA 2026 (4th edition), Ouagadougou: panel</span><span data-lang="fr">SIPEN-UEMOA 2026 (4e édition), Ouagadougou : panel</span></figcaption>
+                    </figure>
+                    <figure class="gal-slide" role="group" aria-roledescription="slide" aria-label="2 / 8">
+                        <div class="gal-frame"><img src="images/gallery/photo-2.jpg" alt="Eklin standing in front of the VivaTech entrance in Paris" width="480" height="854" loading="lazy" decoding="async"></div>
+                        <figcaption><span data-lang="en">VivaTech 2025, Paris</span><span data-lang="fr">VivaTech 2025, Paris</span></figcaption>
+                    </figure>
+                    <figure class="gal-slide" role="group" aria-roledescription="slide" aria-label="3 / 8">
+                        <div class="gal-frame"><img src="images/gallery/photo-3.jpg" alt="Eklin under the glass roof of EY Luxembourg" width="480" height="854" loading="lazy" decoding="async"></div>
+                        <figcaption><span data-lang="en">Indian Business Chamber of Luxembourg, "Space Tech in 2030", at EY Law Luxembourg, June 2025</span><span data-lang="fr">Indian Business Chamber of Luxembourg, « Space Tech in 2030 », chez EY Law Luxembourg, juin 2025</span></figcaption>
+                    </figure>
+                    <figure class="gal-slide" role="group" aria-roledescription="slide" aria-label="4 / 8">
+                        <div class="gal-frame"><img src="images/gallery/photo-4.jpg" alt="Eklin presenting a digital platform on a projected screen during a training session" width="1242" height="932" loading="lazy" decoding="async"></div>
+                        <figcaption><span data-lang="en">Presenting a digital platform during a training session</span><span data-lang="fr">Présentation d'une plateforme digitale lors d'une session de formation</span></figcaption>
+                    </figure>
+                    <figure class="gal-slide" role="group" aria-roledescription="slide" aria-label="5 / 8">
+                        <div class="gal-frame"><img src="images/gallery/photo-5.jpg" alt="Eklin at the lectern looking at a projected slide showing the PI-SPI alias creation and QR code screens, with Ecobank and CAGECFI banners" width="1400" height="933" loading="lazy" decoding="async"></div>
+                        <figcaption><span data-lang="en">PI-SPI BCEAO workshop with Ecobank Togo, December 2025: presenting alias creation and QR code</span><span data-lang="fr">Atelier PI-SPI BCEAO avec Ecobank Togo, décembre 2025 : présentation de la création d'alias et du code QR</span></figcaption>
+                    </figure>
+                    <figure class="gal-slide" role="group" aria-roledescription="slide" aria-label="6 / 8">
+                        <div class="gal-frame"><img src="images/gallery/photo-6.jpg" alt="Eklin speaking at the lectern in front of a slide titled Notre offre, with Ecobank and CAGECFI banners" width="1400" height="933" loading="lazy" decoding="async"></div>
+                        <figcaption><span data-lang="en">PI-SPI BCEAO workshop with Ecobank Togo, December 2025: presenting the CAGECFI offer</span><span data-lang="fr">Atelier PI-SPI BCEAO avec Ecobank Togo, décembre 2025 : présentation de l'offre CAGECFI</span></figcaption>
+                    </figure>
+                    <figure class="gal-slide" role="group" aria-roledescription="slide" aria-label="7 / 8">
+                        <div class="gal-frame"><img src="images/gallery/photo-7.jpg" alt="Eklin speaking at a table with a microphone, next to Mobile Banking and Ecobank banners" width="1400" height="933" loading="lazy" decoding="async"></div>
+                        <figcaption><span data-lang="en">PI-SPI BCEAO workshop with Ecobank Togo, December 2025: speaking</span><span data-lang="fr">Atelier PI-SPI BCEAO avec Ecobank Togo, décembre 2025 : intervention</span></figcaption>
+                    </figure>
+                    <figure class="gal-slide" role="group" aria-roledescription="slide" aria-label="8 / 8">
+                        <div class="gal-frame"><img src="images/gallery/photo-8.jpg" alt="Eklin being filmed during an interview, in front of Ecobank and CAGECFI banners" width="1400" height="933" loading="lazy" decoding="async"></div>
+                        <figcaption><span data-lang="en">PI-SPI BCEAO workshop with Ecobank Togo, December 2025: interview</span><span data-lang="fr">Atelier PI-SPI BCEAO avec Ecobank Togo, décembre 2025 : interview</span></figcaption>
+                    </figure>
+                </div>
+                <button type="button" class="gal-nav gal-prev" id="gal-prev" aria-label="Previous photo">
+                    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
+                </button>
+                <button type="button" class="gal-nav gal-next" id="gal-next" aria-label="Next photo">
+                    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+                </button>
+                <div class="gal-dots" id="gal-dots"><button type="button" class="gal-dot" aria-label="Photo 1" data-i="0"></button><button type="button" class="gal-dot" aria-label="Photo 2" data-i="1"></button><button type="button" class="gal-dot" aria-label="Photo 3" data-i="2"></button><button type="button" class="gal-dot" aria-label="Photo 4" data-i="3"></button><button type="button" class="gal-dot" aria-label="Photo 5" data-i="4"></button><button type="button" class="gal-dot" aria-label="Photo 6" data-i="5"></button><button type="button" class="gal-dot" aria-label="Photo 7" data-i="6"></button><button type="button" class="gal-dot" aria-label="Photo 8" data-i="7"></button></div>
+            </div>
+        </div>
+    </section>
+
     <!-- CONTACT SECTION -->
     <section id="contact" class="py-24 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -711,6 +786,47 @@
         document.querySelectorAll('.fade-in-up').forEach(el => {
             observer.observe(el);
         });
+    </script>
+
+    <script>
+        // Carrousel photos
+        (function () {
+            const track = document.getElementById('gal-track');
+            if (!track) return;
+            const slides = [...track.children];
+            const dots = [...document.querySelectorAll('.gal-dot')];
+            const prev = document.getElementById('gal-prev');
+            const next = document.getElementById('gal-next');
+            let index = 0;
+            const mark = (i) => {
+                index = i;
+                dots.forEach((d, k) => d.setAttribute('aria-current', String(k === i)));
+            };
+            const go = (i) => {
+                const n = (i + slides.length) % slides.length;
+                track.scrollTo({ left: slides[n].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+                mark(n);
+            };
+            prev.addEventListener('click', () => go(index - 1));
+            next.addEventListener('click', () => go(index + 1));
+            dots.forEach((d) => d.addEventListener('click', () => go(Number(d.dataset.i))));
+            track.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') { e.preventDefault(); go(index - 1); }
+                if (e.key === 'ArrowRight') { e.preventDefault(); go(index + 1); }
+            });
+            let timer;
+            track.addEventListener('scroll', () => {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    const i = Math.round(track.scrollLeft / track.clientWidth);
+                    if (i !== index && i >= 0 && i < slides.length) mark(i);
+                }, 80);
+            });
+            window.addEventListener('resize', () => {
+                track.scrollTo({ left: slides[index].offsetLeft - track.offsetLeft, behavior: 'instant' });
+            });
+            mark(0);
+        })();
     </script>
 
     <script>
