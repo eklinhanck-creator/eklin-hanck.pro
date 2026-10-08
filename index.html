@@ -73,6 +73,29 @@
         .gal-dot { width: 0.65rem; height: 0.65rem; border-radius: 9999px; border: 0; background: #cbd5e1; cursor: pointer; padding: 0; }
         .gal-dot[aria-current="true"] { background: #1e40af; transform: scale(1.25); }
         @media (prefers-reduced-motion: reduce) { .gal-track { scroll-behavior: auto; } }
+        .vid { max-width: 64rem; margin: 3.5rem auto 0; }
+        .vid-h { text-align: center; font-size: 1.5rem; font-weight: 700; color: #0f172a; margin-bottom: 1.5rem; }
+        .vid-grid { display: grid; grid-template-columns: 256fr 256fr 81fr; gap: 1.25rem; align-items: start; }
+        .vid-card { min-width: 0; }
+        .vid-media { position: relative; border-radius: 0.75rem; overflow: hidden; background: #0f172a; box-shadow: 0 1px 3px rgba(15,23,42,0.15); }
+        .vid-landscape .vid-media { aspect-ratio: 16 / 9; }
+        .vid-portrait .vid-media { aspect-ratio: 9 / 16; }
+        .vid-play, .vid-media iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+        .vid-play img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+        .vid-play:hover img { transform: scale(1.03); }
+        .vid-btn { position: absolute; left: 50%; top: 50%; width: 3.5rem; height: 3.5rem; margin: -1.75rem 0 0 -1.75rem; border-radius: 9999px; background: rgba(15,23,42,0.75); color: #fff; border: 2px solid rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .vid-btn .vid-icon { width: 1.5rem; height: 1.5rem; margin-left: 0.15rem; }
+        .vid-play:hover .vid-btn { background: #1e40af; }
+        .vid-play:focus-visible { outline: 3px solid #f59e0b; outline-offset: -3px; }
+        .vid-title { margin-top: 0.75rem; font-size: 0.9rem; line-height: 1.45; color: #334155; }
+        .vid-more { text-align: center; margin-top: 1.5rem; font-size: 0.95rem; }
+        .vid-more a { color: #1e40af; font-weight: 500; }
+        .vid-more a:hover { text-decoration: underline; }
+        @media (max-width: 760px) {
+            .vid-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+            .vid-portrait { max-width: 15rem; margin: 0 auto; }
+        }
+        @media (prefers-reduced-motion: reduce) { .vid-play img, .vid-btn { transition: none; } .vid-play:hover img { transform: none; } }
         .about-col { max-width: 44rem; margin: 0 auto; }
         html[lang="fr"] .cta-c [data-lang="fr"] { display: inline-block; }
         .cta-c [data-lang="en"] { display: inline-block; }
@@ -623,6 +646,42 @@
                 </button>
                 <div class="gal-dots" id="gal-dots"><button type="button" class="gal-dot" aria-label="Photo 1" data-i="0"></button><button type="button" class="gal-dot" aria-label="Photo 2" data-i="1"></button><button type="button" class="gal-dot" aria-label="Photo 3" data-i="2"></button><button type="button" class="gal-dot" aria-label="Photo 4" data-i="3"></button><button type="button" class="gal-dot" aria-label="Photo 5" data-i="4"></button><button type="button" class="gal-dot" aria-label="Photo 6" data-i="5"></button><button type="button" class="gal-dot" aria-label="Photo 7" data-i="6"></button><button type="button" class="gal-dot" aria-label="Photo 8" data-i="7"></button></div>
             </div>
+            <div class="vid">
+                <h3 class="vid-h" data-lang="en">Videos</h3>
+                <h3 class="vid-h" data-lang="fr">Vidéos</h3>
+                <div class="vid-grid">
+                    <div class="vid-card vid-landscape">
+                        <div class="vid-media">
+                            <a class="vid-play" href="https://www.youtube.com/watch?v=LMiFU2DeUEU" target="_blank" rel="noopener noreferrer" data-vid="LMiFU2DeUEU" data-title="SAM 2025 – Mon intervention avec Jiway Luxembourg sur le Scoring IA et le Workflow Crédit en Afrique" aria-label="SAM 2025 – Mon intervention avec Jiway Luxembourg sur le Scoring IA et le Workflow Crédit en Afrique">
+                                <img src="images/videos/video-1.jpg" alt="" width="960" height="540" loading="lazy" decoding="async">
+                                <span class="vid-btn"><svg class="vid-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></span>
+                            </a>
+                        </div>
+                        <p class="vid-title" lang="fr">SAM 2025 – Mon intervention avec Jiway Luxembourg sur le Scoring IA et le Workflow Crédit en Afrique</p>
+                    </div>
+                    <div class="vid-card vid-landscape">
+                        <div class="vid-media">
+                            <a class="vid-play" href="https://www.youtube.com/watch?v=YlIe9ngPMi4" target="_blank" rel="noopener noreferrer" data-vid="YlIe9ngPMi4" data-title="Ma vision de l'innovation et de la compliance (SIPEN UEMOA - Ouagadougou)" aria-label="Ma vision de l'innovation et de la compliance (SIPEN UEMOA - Ouagadougou)">
+                                <img src="images/videos/video-2.jpg" alt="" width="960" height="540" loading="lazy" decoding="async">
+                                <span class="vid-btn"><svg class="vid-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></span>
+                            </a>
+                        </div>
+                        <p class="vid-title" lang="fr">Ma vision de l'innovation et de la compliance (SIPEN UEMOA - Ouagadougou)</p>
+                    </div>
+                    <div class="vid-card vid-portrait">
+                        <div class="vid-media">
+                            <a class="vid-play" href="https://www.youtube.com/shorts/HYphkT-M5Ak" target="_blank" rel="noopener noreferrer" data-vid="HYphkT-M5Ak" data-title="Interopérabilité BCEAO : CAGECFI et ECOBANK co-animent un atelier d'information stratégique à Lomé" aria-label="Interopérabilité BCEAO : CAGECFI et ECOBANK co-animent un atelier d'information stratégique à Lomé">
+                                <img src="images/videos/video-3.jpg" alt="" width="540" height="960" loading="lazy" decoding="async">
+                                <span class="vid-btn"><svg class="vid-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></span>
+                            </a>
+                        </div>
+                        <p class="vid-title" lang="fr">Interopérabilité BCEAO : CAGECFI et ECOBANK co-animent un atelier d'information stratégique à Lomé</p>
+                    </div>
+                </div>
+                <p class="vid-more">
+                    <a href="https://www.youtube.com/@khaunbiow-hanckeklinyaovi1310" target="_blank" rel="noopener noreferrer"><span data-lang="en">More videos on YouTube</span><span data-lang="fr">Plus de vidéos sur YouTube</span></a>
+                </p>
+            </div>
         </div>
     </section>
 
@@ -826,6 +885,40 @@
                 track.scrollTo({ left: slides[index].offsetLeft - track.offsetLeft, behavior: 'instant' });
             });
             mark(0);
+        })();
+    </script>
+
+    <script>
+        // Vidéos YouTube : le lecteur ne se charge qu'au clic (aucune requête vers YouTube avant)
+        (function () {
+            const links = [...document.querySelectorAll('.vid-play')];
+            if (!links.length) return;
+            const saved = new Map();
+            const stopOthers = (except) => {
+                saved.forEach((html, media) => {
+                    if (media !== except) { media.innerHTML = html; saved.delete(media); bind(media); }
+                });
+            };
+            const bind = (media) => {
+                const a = media.querySelector('.vid-play');
+                if (a) a.addEventListener('click', play);
+            };
+            function play(e) {
+                e.preventDefault();
+                const a = e.currentTarget;
+                const media = a.parentElement;
+                stopOthers(media);
+                saved.set(media, media.innerHTML);
+                const f = document.createElement('iframe');
+                f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.vid + '?autoplay=1&rel=0&playsinline=1';
+                f.title = a.dataset.title;
+                f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+                f.setAttribute('allowfullscreen', '');
+                f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+                media.innerHTML = '';
+                media.appendChild(f);
+            }
+            links.forEach((a) => a.addEventListener('click', play));
         })();
     </script>
 
