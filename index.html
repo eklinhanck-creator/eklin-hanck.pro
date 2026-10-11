@@ -172,6 +172,10 @@
         html[lang="fr"] .press-meta [data-lang="fr"], html[lang="fr"] .press-more [data-lang="fr"] { display: inline; }
         .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0 0 1.5rem; }
         .chips li { padding: 0.3rem 0.8rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em; color: #fde68a; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.45); }
+        .nav-d { display: none; align-items: center; gap: 1.75rem; }
+        .nav-m { display: flex; align-items: center; }
+        @media (min-width: 1024px) { .nav-d { display: flex; } .nav-m, #mobile-menu { display: none !important; } }
+        section[id], #contact { scroll-margin-top: 4.5rem; }
         .about-col { max-width: 44rem; margin: 0 auto; }
         html[lang="fr"] .cta-c [data-lang="fr"] { display: inline-block; }
         .cta-c [data-lang="en"] { display: inline-block; }
@@ -209,13 +213,22 @@
                     <span class="font-bold text-2xl text-brand-primary tracking-tight">KHEYS</span>
                     <span class="text-xs text-slate-600 font-medium">KHAUNBIOW-HANCK — Eklin Yaovi (Steve)</span>
                 </div>
-                <div class="hidden md:flex space-x-8 items-center">
+                <div class="nav-d">
                     <a href="#expertise" class="text-slate-600 hover:text-brand-primary transition font-medium" data-lang="en">Expertise</a>
                     <a href="#expertise" class="text-slate-600 hover:text-brand-primary transition font-medium" data-lang="fr">Expertise</a>
                     
                     <a href="#parcours" class="text-slate-600 hover:text-brand-primary transition font-medium" data-lang="en">Journey</a>
                     <a href="#parcours" class="text-slate-600 hover:text-brand-primary transition font-medium" data-lang="fr">Parcours</a>
                     
+                    <a href="#services" class="text-slate-600 hover:text-brand-primary transition font-medium" data-lang="en">Services</a>
+                    <a href="#services" class="text-slate-600 hover:text-brand-primary transition font-medium" data-lang="fr">Services</a>
+
+                    <a href="#gallery" class="text-slate-600 hover:text-brand-primary transition font-medium" data-lang="en">In the Field</a>
+                    <a href="#gallery" class="text-slate-600 hover:text-brand-primary transition font-medium" data-lang="fr">Sur le terrain</a>
+
+                    <a href="#press" class="text-slate-600 hover:text-brand-primary transition font-medium" data-lang="en">Press</a>
+                    <a href="#press" class="text-slate-600 hover:text-brand-primary transition font-medium" data-lang="fr">Presse</a>
+
                     <button id="lang-toggle" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-full text-sm font-semibold text-slate-700 transition border border-slate-300">
                         FR
                     </button>
@@ -224,7 +237,7 @@
                         Contact
                     </a>
                 </div>
-                <div class="md:hidden flex items-center">
+                <div class="nav-m">
                     <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-primary focus:outline-none">
                         <svg class="ico text-2xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
                     </button>
@@ -232,11 +245,17 @@
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+        <div id="mobile-menu" class="hidden bg-white border-t">
             <a href="#expertise" class="block px-4 py-3 text-slate-600 hover:bg-slate-50" data-lang="en">Expertise</a>
             <a href="#expertise" class="block px-4 py-3 text-slate-600 hover:bg-slate-50" data-lang="fr">Expertise</a>
             <a href="#parcours" class="block px-4 py-3 text-slate-600 hover:bg-slate-50" data-lang="en">Journey</a>
             <a href="#parcours" class="block px-4 py-3 text-slate-600 hover:bg-slate-50" data-lang="fr">Parcours</a>
+            <a href="#services" class="block px-4 py-3 text-slate-600 hover:bg-slate-50" data-lang="en">Services</a>
+            <a href="#services" class="block px-4 py-3 text-slate-600 hover:bg-slate-50" data-lang="fr">Services</a>
+            <a href="#gallery" class="block px-4 py-3 text-slate-600 hover:bg-slate-50" data-lang="en">In the Field</a>
+            <a href="#gallery" class="block px-4 py-3 text-slate-600 hover:bg-slate-50" data-lang="fr">Sur le terrain</a>
+            <a href="#press" class="block px-4 py-3 text-slate-600 hover:bg-slate-50" data-lang="en">Press</a>
+            <a href="#press" class="block px-4 py-3 text-slate-600 hover:bg-slate-50" data-lang="fr">Presse</a>
             <a href="#contact" class="block px-4 py-3 text-brand-primary font-bold hover:bg-slate-50">Contact</a>
         </div>
     </nav>
@@ -699,7 +718,7 @@
                     </figure>
                     <figure class="gal-slide" role="group" aria-roledescription="slide" aria-label="4 / 15">
                         <div class="gal-frame"><img src="images/gallery/photo-9.jpg" alt="Eklin speaking with a microphone while seated on a stage next to two other panelists" width="1400" height="933" loading="lazy" decoding="async"></div>
-                        <figcaption><span data-lang="en">Panel discussion</span><span data-lang="fr">Table ronde</span></figcaption>
+                        <figcaption><span data-lang="en">Panel discussion during a session of the agricultural and rural finance training (FAR) for alumni, October 2023, ahead of the African Microfinance Week organised by ADA Luxembourg</span><span data-lang="fr">Table ronde lors d'une session de la formation en finance agricole et rurale (FAR) des alumni, octobre 2023, en prélude à la Semaine africaine de la microfinance organisée par ADA Luxembourg</span></figcaption>
                     </figure>
                     <figure class="gal-slide" role="group" aria-roledescription="slide" aria-label="5 / 15">
                         <div class="gal-frame"><img src="images/gallery/photo-11.jpg" alt="Eklin standing with a group of visitors at the ETNA Micro Finance stand" width="1400" height="930" loading="lazy" decoding="async"></div>
@@ -807,6 +826,17 @@
                 </p>
             </div>
             <div class="press-grid">
+                <article class="press-card">
+                    <a class="press-img" href="https://www.linkedin.com/posts/eklinhanck_vivatech-corebanking-crossborder-share-7473010326020612097-dkrp/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                        <img src="images/press/press-7.jpg" alt="" loading="lazy" decoding="async">
+                    </a>
+                    <div class="press-body">
+                        <p class="press-meta"><span class="press-src">LinkedIn</span> · <span class="press-role"><span data-lang="en">Author</span><span data-lang="fr">Auteur</span></span></p>
+                        <h3 class="press-title" lang="en"><a href="https://www.linkedin.com/posts/eklinhanck_vivatech-corebanking-crossborder-share-7473010326020612097-dkrp/" target="_blank" rel="noopener noreferrer">Throwback VivaTech 2025.</a></h3>
+                        <p class="press-lead" lang="fr">Un an plus tard, les ponts technologiques que l’on imaginait entre nos deux continents deviennent des réalités opérationnelles. What’s next?</p>
+                        <a class="press-more" href="https://www.linkedin.com/posts/eklinhanck_vivatech-corebanking-crossborder-share-7473010326020612097-dkrp/" target="_blank" rel="noopener noreferrer"><span data-lang="en">Read on LinkedIn</span><span data-lang="fr">Lire sur LinkedIn</span> <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                </article>
                 <article class="press-card">
                     <a class="press-img" href="https://togoweb.net/interoperabilite-bceao-cagecfi-et-ecobank-unissent-leurs-forces-pour-accelerer-la-transformation-numerique-du-systeme-financier-ouest-africain/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
                         <img src="images/press/press-2.jpg" alt="" loading="lazy" decoding="async">
